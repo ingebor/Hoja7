@@ -1,7 +1,7 @@
-import java.util.Comparator;
-
+//Extraído de https://stackoverflow.com/questions/51285589/binary-tree-of-strings-in-java
 public class BinaryTree <E> extends Object{
 	
+
 	private String key;
     private Object value;
     private BinaryTree left, right;
