@@ -25,25 +25,40 @@ public class Main {
 			Scanner diccionary = new Scanner(archivoDicc);
 			Scanner read = new Scanner(System.in);
 			String words = "";
-			//ArrayList<String> palabras = new ArrayList<String>();
 			int count = 0;
 			while ((words = buffRea.readLine()) != null) {
 				String[] eachLine = words.split(" ");
-				System.out.println(eachLine[1]+ " "+ eachLine[2]);
+				eachLine[1].toLowerCase();
+				eachLine[2].toLowerCase();
+				//System.out.println(eachLine[1]+ " "+ eachLine[2]);
 				binaryTree.put(eachLine[1], eachLine[2]);
 				count++;
 			}
-			
-			
-			
 		}
 		
 		if (archivoTrad.exists()) {
 			Scanner translate = new Scanner(archivoTrad);
 			Scanner readI = new Scanner(System.in);
 			Scanner readInt = new Scanner(System.in);
-			String sentence = translate.nextLine();
+			String sentence = translate.nextLine().toLowerCase();
 			System.out.println(sentence);
+			String[] palabras = sentence.split(" ");
+			String finalSentence = "";
+			int howManyW = palabras.length;
+			
+			for(int i = 0; i<howManyW;i++) {
+				try {
+					String search = palabras[i];
+					String firstOp = (String) binaryTree.get(search);
+					finalSentence = finalSentence.concat(" "+firstOp+" " );
+				}
+				catch (Exception E) {
+					String secondOp = "";
+					secondOp = ("+") + palabras[i] + ("*");
+					finalSentence = finalSentence.concat(secondOp);
+				}
+			}
+			System.out.println("Su oracion traducida es: "+finalSentence);
 		}
 	}
 }
