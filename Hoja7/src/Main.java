@@ -30,7 +30,6 @@ public class Main {
 				String[] eachLine = words.split(" ");
 				eachLine[1].toLowerCase();
 				eachLine[2].toLowerCase();
-				//System.out.println(eachLine[1]+ " "+ eachLine[2]);
 				binaryTree.put(eachLine[1], eachLine[2]);
 				count++;
 			}
@@ -38,8 +37,6 @@ public class Main {
 		
 		if (archivoTrad.exists()) {
 			Scanner translate = new Scanner(archivoTrad);
-			Scanner readI = new Scanner(System.in);
-			Scanner readInt = new Scanner(System.in);
 			String sentence = translate.nextLine().toLowerCase();
 			System.out.println(sentence);
 			String[] palabras = sentence.split(" ");
@@ -47,16 +44,16 @@ public class Main {
 			int howManyW = palabras.length;
 			
 			for(int i = 0; i<howManyW;i++) {
-				try {
-					String search = palabras[i];
-					String firstOp = (String) binaryTree.get(search);
-					finalSentence = finalSentence.concat(" "+firstOp+" " );
+				
+				String got = (String) binaryTree.get(palabras[i]);
+				String traduced = "";
+				if (got == null) {
+					traduced = ("*")+palabras[i]+("*");
 				}
-				catch (Exception E) {
-					String secondOp = "";
-					secondOp = ("+") + palabras[i] + ("*");
-					finalSentence = finalSentence.concat(secondOp);
+				else {
+					traduced = got;
 				}
+				finalSentence = finalSentence + (" ") + traduced;
 			}
 			System.out.println("Su oracion traducida es: "+finalSentence);
 		}
