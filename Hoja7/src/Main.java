@@ -19,7 +19,7 @@ public class Main {
 		System.out.println("------------------");
 		System.out.println("|   Bienvenido   |");
 		System.out.println("------------------");
-		System.out.println("Desea traducir la siguiente oracion: ");
+		System.out.println("---Por favor en el diccionario ingresar las palabras de la siguiente manera: ( dog perro ) \n-Ademas, el arbol ya viene iniciado con la palabra ( I yo )\n" );
 		
 		if(archivoDicc.exists()) {
 			Scanner diccionary = new Scanner(archivoDicc);
@@ -33,11 +33,15 @@ public class Main {
 				binaryTree.put(eachLine[1], eachLine[2]);
 				count++;
 			}
+			System.out.println("Nodos del arbol binario en InOrder:");
+			binaryTree.inOrder(binaryTree);
+			
 		}
 		
 		if (archivoTrad.exists()) {
 			Scanner translate = new Scanner(archivoTrad);
 			String sentence = translate.nextLine().toLowerCase();
+			System.out.println("\n-Desea traducir la siguiente oracion: ");
 			System.out.println(sentence);
 			String[] palabras = sentence.split(" ");
 			String finalSentence = "";
@@ -55,7 +59,10 @@ public class Main {
 				}
 				finalSentence = finalSentence + (" ") + traduced;
 			}
-			System.out.println("Su oracion traducida es: "+finalSentence);
+			System.out.println("\nSu oracion traducida es: "+finalSentence+"\n");
+		}
+		else {
+			System.out.println("No se ha podido encontrar el archivo, por favor utilice el proporcionado");
 		}
 	}
 }
